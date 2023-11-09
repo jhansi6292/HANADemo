@@ -1,0 +1,30 @@
+PROCEDURE "GetQuantityBySalesOrder"( 
+			in i_id NVARCHAR(100),
+			out o_result table(
+		     	salesorder_id Integer,
+		     	TotalQuamtity Decimal(10,2)
+    		),
+    		out  o_rows integer
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   READS SQL DATA 
+   AS
+BEGIN
+	IF i_id = 0 
+	THEN 
+	   lt_so = select * from "SALESORDER";
+	ELSE
+		lt_so = select * from "SALESORDER" where ID in (i_id);
+	END IF;
+   lt_soitems = select * from "SALESORDERITEM";
+   lt_agg_soitems = select ID , sum(quantity) as quantity from :lt_soitems group by ID;
+   o_result = select hdr.Id as salesorder_id, item.quantity as TotalQuamtity
+				   from :lt_so as hdr 
+				   left outer join :lt_agg_soitems as item 
+				   on hdr.ID=item.ID;
+				   
+   --select count(*) into o_rows from :o_result ;
+   o_rows = RECORD_COUNT(:o_result);
+
+END

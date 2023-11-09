@@ -1,0 +1,7 @@
+COLUMN TABLE SalesOrderItem(
+  ID Integer,
+  Item Integer,
+  Material NVARCHAR(50),
+  Quantity Decimal(10, 3),
+  PRIMARY KEY(ID, Item)
+);
