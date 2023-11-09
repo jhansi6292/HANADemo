@@ -1,0 +1,8 @@
+{
+  "syn_customer": {
+    "target": {
+      "object": "Customers",
+      "schema": "CUSTOMER_1"
+    }
+  }
+}

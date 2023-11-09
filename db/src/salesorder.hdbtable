@@ -2,5 +2,6 @@ COLUMN TABLE SalesOrder(
   ID Integer,
   Description NVARCHAR(50),
   OrderDate Date,
+  customerno Integer,
   PRIMARY KEY (ID)
 )

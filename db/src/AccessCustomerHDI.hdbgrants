@@ -1,0 +1,22 @@
+{
+    "ServiceName_1": {
+        "object_owner": {
+            "schema_roles": [
+                {
+                    "roles": [
+                        "customer_schema_viewer_g#"
+                    ]
+                }
+            ]
+        },
+        "application_user": {
+            "schema_roles": [
+                {
+                    "roles": [
+                        "customer_schema_viewer"
+                    ]
+                }
+            ]
+        }
+    }
+}

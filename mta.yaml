@@ -9,11 +9,25 @@ modules:
   - name: hdi_db
     properties:
       TARGET_CONTAINER: ~{hdi-container-name}
+  - name: cross-container-service-1
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_1
+      service: ~{the-service-name}
 resources:
 - name: hdi_db
   type: com.sap.xs.hdi-container
   parameters:
     config:
       schema: HANADEMO
+    service: hana
+    service-name: HANADemo-hdi
+    service-plan: hdi-shared
   properties:
     hdi-container-name: ${service-name}
+- name: cross-container-service-1
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: Customer-hdi
+  properties:
+    the-service-name: ${service-name}
